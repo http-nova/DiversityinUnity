@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unity in Diversity</title>
+
+<style>
+:root{
+  --saffron:#ff9933;
+  --green:#138808;
+  --blue:#0b3d91;
+  --light:#f7f9fc;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body{
+  background:var(--light);
+  color:#222;
+  line-height:1.7;
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(
+    to bottom,
+    var(--saffron),
+    #ffffff,
+    var(--green)
+  );
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.hero h1{
+  font-size:3.2rem;
+  margin-bottom:10px;
+}
+
+.hero p{
+  max-width:720px;
+  font-size:1.2rem;
+  margin-bottom:30px;
+}
+
+/* ================= SYMBOL ================= */
+.symbol-box{
+  width:180px;
+  height:180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  margin-bottom:20px;
+}
+
+.symbol-box img{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  transition:opacity .4s ease;
+}
+
+/* ================= INFO ================= */
+.info{
+  max-width:650px;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+
+.info h3{
+  margin-bottom:6px;
+}
+
+small{
+  opacity:.75;
+}
+
+/* ================= SECTIONS ================= */
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:20px 25px;
+}
+
+section h2{
+  text-align:center;
+  font-size:2.3rem;
+  margin-bottom:25px;
+  color:var(--blue);
+}
+
+section p{
+  font-size:1.05rem;
+  margin-bottom:16px;
+  text-align:justify;
+}
+
+/* ================= CARDS ================= */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+  margin-top:35px;
+}
+
+.card{
+  background:#fff;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.card h3{
+  margin-bottom:10px;
+  color:var(--blue);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:25px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <h1>Unity in Diversity</h1>
+  <p>
+    Different religions, cultures, and traditions come together
+    to form one strong and united nation.
+  </p>
+
+  <div class="symbol-box" id="symbolBox">
+    <img id="symbolImg" src="" alt="Religion Symbol">
+  </div>
+
+  <div class="info" id="infoBox">
+    <h3 id="symbolTitle"></h3>
+    <p id="symbolText"></p>
+  </div>
+
+  <small>Hover on the symbol to understand unity</small>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<section>
+<h2>What is Unity in Diversity?</h2>
+<p>
+Unity in diversity means the peaceful coexistence of people belonging to different
+religions, cultures, languages, and traditions while living together as one nation.
+India is a perfect example of unity in diversity where people respect each other’s
+differences and share common national values. Despite diversity in beliefs and lifestyles,
+all citizens follow the same constitution, laws, and national symbols.
+This unity promotes tolerance, harmony, and national integrity.
+</p>
+</section>
+
+<section>
+<h2>How Diversity Strengthens India</h2>
+<div class="cards">
+  <div class="card">
+    <h3>Cultural Richness</h3>
+    <p>India’s traditions, languages, food, art, and festivals make the nation vibrant and unique.</p>
+  </div>
+  <div class="card">
+    <h3>Religious Harmony</h3>
+    <p>Respect for all religions promotes peace, brotherhood, and mutual understanding.</p>
+  </div>
+  <div class="card">
+    <h3>Shared Values</h3>
+    <p>Values like equality, tolerance, and unity bind citizens together.</p>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Role of Citizens</h2>
+<p>
+Citizens play a vital role in maintaining unity and harmony in a diverse country like India.
+Respecting all religions, avoiding discrimination, and spreading positivity helps build a
+peaceful society. Responsible behavior, especially on social media, prevents hatred and
+misinformation. Participation in community and cultural activities strengthens national unity.
+</p>
+</section>
+
+<footer>
+<p>“Unity in diversity is the true identity of India.”</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+const symbols = [
+  {
+    name:"Hinduism",
+    img:"/Om_symbol.svg",
+    text:"Promotes harmony, tolerance, and respect for all life."
+  },
+  {
+    name:"Islam",
+    img:"/Star_and_Crescent.svg",
+    text:"Teaches peace, brotherhood, and equality."
+  },
+  {
+    name:"Christianity",
+    img:"/Christian_cross.svg",
+    text:"Spreads love, forgiveness, and service to humanity."
+  },
+  {
+    name:"Buddhism",
+    img:"/Dharma_Wheel.svg",
+    text:"Encourages peace, compassion, and non-violence."
+  },
+  {
+    name:"Sikhism",
+    img:"/Khanda.svg",
+    text:"Stands for equality, service, and justice."
+  },
+  {
+    name:"Judaism",
+    img:"/star_of_david.svg",
+    text:"Focuses on justice, community, and spirituality."
+  },
+  {
+    name:"Ashoka Chakra",
+    img:"/Ashoka_Chakra.svg",
+    text:"Symbol of national unity and integrity."
+  }
+];
+
+let index = 0;
+let interval;
+let paused = false;
+
+const img = document.getElementById("symbolImg");
+const box = document.getElementById("symbolBox");
+const info = document.getElementById("infoBox");
+const title = document.getElementById("symbolTitle");
+const text = document.getElementById("symbolText");
+
+function showSymbol(){
+  if(paused) return;
+  img.src = symbols[index].img;
+  index = (index + 1) % symbols.length;
+}
+
+function startLoop(){
+  interval = setInterval(showSymbol, 1500);
+}
+
+function stopLoop(){
+  clearInterval(interval);
+}
+
+box.addEventListener("mouseenter", () => {
+  paused = true;
+  stopLoop();
+  const current = symbols[(index - 1 + symbols.length) % symbols.length];
+  title.textContent = current.name;
+  text.textContent = current.text;
+  info.style.opacity = 1;
+});
+
+box.addEventListener("mouseleave", () => {
+  info.style.opacity = 0;
+  paused = false;
+  startLoop();
+});
+
+showSymbol();
+startLoop();
+</script>
+
+</body>
+</html>
